@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2e7d32">
+  <title>Жарам — жарамдылық мерзімі</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🥫 Жарам</h1>
+    <p class="subtitle">Тауарлардың жарамдылық мерзімін бақылау</p>
+  </header>
+
+  <main>
+    <section class="card" id="alerts" hidden></section>
+
+    <section class="card">
+      <h2 id="form-title">Тауар қосу</h2>
+      <form id="product-form">
+        <input type="hidden" id="edit-id">
+        <label>Атауы
+          <input type="text" id="name" required placeholder="Мысалы: Сүт 2.5%">
+        </label>
+        <div class="row">
+          <label>Жарамдылық мерзімі
+            <input type="date" id="expiry" required>
+          </label>
+          <label>Саны
+            <input type="number" id="qty" min="1" value="1">
+          </label>
+        </div>
+        <div class="row">
+          <label>Санаты
+            <select id="category">
+              <option>Тамақ</option>
+              <option>Сусын</option>
+              <option>Дәрі</option>
+              <option>Косметика</option>
+              <option>Тұрмыстық</option>
+              <option>Басқа</option>
+            </select>
+          </label>
+          <label>Неше күн бұрын ескерту
+            <input type="number" id="remind" min="0" value="3">
+          </label>
+        </div>
+        <label>Ескертпе
+          <input type="text" id="note" placeholder="Мысалы: тоңазытқышта, 2-сөре">
+        </label>
+        <div class="row buttons">
+          <button type="submit" id="submit-btn">Қосу</button>
+          <button type="button" id="cancel-edit" class="secondary" hidden>Болдырмау</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="list-head">
+        <h2>Тауарлар тізімі</h2>
+        <div class="filters">
+          <input type="search" id="search" placeholder="Іздеу...">
+          <select id="filter">
+            <option value="all">Барлығы</option>
+            <option value="expired">Мерзімі өткен</option>
+            <option value="soon">Мерзімі жақын</option>
+            <option value="ok">Жарамды</option>
+          </select>
+        </div>
+      </div>
+      <div id="stats" class="stats"></div>
+      <ul id="list"></ul>
+      <p id="empty" class="empty">Әзірге тауар жоқ. Жоғарыдан қосыңыз.</p>
+    </section>
+
+    <section class="card settings">
+      <h2>Баптаулар</h2>
+      <button id="notify-btn" class="secondary">🔔 Ескертулерді қосу</button>
+      <button id="export-btn" class="secondary">⬇️ Сақтық көшірме (JSON)</button>
+      <label class="file-btn secondary">⬆️ Көшірмеден қалпына келтіру
+        <input type="file" id="import-file" accept="application/json" hidden>
+      </label>
+      <p class="hint" id="notify-status"></p>
+    </section>
+  </main>
+
+  <footer>Деректер тек осы құрылғыда (браузерде) сақталады.</footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
